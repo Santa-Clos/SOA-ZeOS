@@ -38,8 +38,8 @@ int __attribute__((__section__(".text.main")))
   set_seg_regs(__KERNEL_DS, __KERNEL_DS, INITIAL_ESP); // using a global array as the stack
 
   /*** DO *NOT* ADD ANY CODE IN THIS ROUTINE BEFORE THIS POINT ***/
-  printk ("Benvingut al sistema operatiu de l'Arnau!!!");
-  printk("Kernel Loaded!    ");
+
+  printk("Kernel Loaded! Welcome aboard, Sexy Captain!");
 
 
   /* Initialize hardware data */
