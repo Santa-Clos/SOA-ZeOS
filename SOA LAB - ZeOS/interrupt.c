@@ -31,7 +31,10 @@ char char_map[] =
 
 void keyboard_routine() {
   unsigned char c = inb(0x60);
-  if(c&0x80) printc_xy(0, 0, char_map[c&0x7F]);
+  unsigned char c2;
+  if(char_map[c&0x7F] == '\0') c2 = 'C';
+  else c2 = char_map[c&0x7F];
+  if(c&0x80) printc_xy(0, 0, c2);
 }
 
 void setInterruptHandler(int vector, void (*handler)(), int maxAccessibleFromPL)
