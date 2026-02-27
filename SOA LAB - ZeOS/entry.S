@@ -4,6 +4,7 @@
 
 #include <asm.h>
 #include <segment.h>
+#include <errno.h>
 
 
 /**************************************************/
@@ -73,4 +74,19 @@ ENTRY(keyboard_handler)
       EOI; \
       call keyboard_routine; \
       RESTORE_ALL; \
+      iret
+
+ENTRY(system_call_handler) \
+      SAVE_ALL
+      cmpl $0, %eax
+      jl err
+      cmpl $4, %eax
+      jg err
+      call *sys_call_table(, %eax, 0x04)
+      jmp fin
+err:
+      movl $~ENOSYS, %eax
+fin:
+      movl %eax, 0x18(%esp)
+      RESTORE_ALL
       iret
