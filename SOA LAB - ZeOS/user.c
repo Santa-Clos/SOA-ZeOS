@@ -11,5 +11,11 @@ int __attribute__ ((__section__(".text.main")))
      /* __asm__ __volatile__ ("mov %0, %%cr3"::"r" (0) ); */
 
   write(1, "Penis!\n", 7);
+  int time = gettime();
+  char *c;
+  itoa(time, c);
+  write(1, c, 1);
+
+  
   while(1) { }
 }

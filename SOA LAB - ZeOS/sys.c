@@ -15,6 +15,8 @@
 
 #include <errno.h>
 
+#include <stats.h>
+
 #define LECTURA 0
 #define ESCRIPTURA 1
 
@@ -57,4 +59,9 @@ int sys_write(int fd, char *buffer, int size) {
     bytes += copy_size;
   }
   return bytes;
+}
+
+int sys_gettime() {
+  if(zeos_ticks < 0) return -EINTR;
+  return zeos_ticks;
 }

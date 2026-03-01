@@ -80,7 +80,7 @@ hardware.s: hardware.S $(INCLUDEDIR)/asm.h
 
 user.o:user.c $(INCLUDEDIR)/libc.h
 
-interrupt.o:interrupt.c $(INCLUDEDIR)/interrupt.h $(INCLUDEDIR)/segment.h $(INCLUDEDIR)/types.h
+interrupt.o:interrupt.c $(INCLUDEDIR)/interrupt.h $(INCLUDEDIR)/segment.h $(INCLUDEDIR)/types.h $(INCLUDEDIR)/stats.h
 
 io.o:io.c $(INCLUDEDIR)/io.h
 
@@ -90,12 +90,12 @@ libc.o:libc.c $(INCLUDEDIR)/libc.h
 
 mm.o:mm.c $(INCLUDEDIR)/types.h $(INCLUDEDIR)/mm.h
 
-sys.o:sys.c $(INCLUDEDIR)/devices.h
+sys.o:sys.c $(INCLUDEDIR)/devices.h $(INCLUDEDIR)/stats.h
 
 utils.o:utils.c $(INCLUDEDIR)/utils.h
 
 
-system.o:system.c $(INCLUDEDIR)/hardware.h system.lds $(SYSOBJ) $(INCLUDEDIR)/segment.h $(INCLUDEDIR)/types.h $(INCLUDEDIR)/interrupt.h $(INCLUDEDIR)/system.h $(INCLUDEDIR)/sched.h $(INCLUDEDIR)/mm.h $(INCLUDEDIR)/io.h $(INCLUDEDIR)/mm_address.h 
+system.o:system.c $(INCLUDEDIR)/hardware.h system.lds $(SYSOBJ) $(INCLUDEDIR)/segment.h $(INCLUDEDIR)/types.h $(INCLUDEDIR)/interrupt.h $(INCLUDEDIR)/system.h $(INCLUDEDIR)/sched.h $(INCLUDEDIR)/mm.h $(INCLUDEDIR)/io.h $(INCLUDEDIR)/mm_address.h $(INCLUDEDIR)/stats.h
 
 
 system: system.o system.lds $(SYSOBJ)

@@ -6,6 +6,7 @@
 #include <segment.h>
 #include <hardware.h>
 #include <io.h>
+#include <stats.h>
 
 #include <zeos_interrupt.h>
 
@@ -39,6 +40,7 @@ void keyboard_routine() {
 
 void clock_routine() {
   zeos_show_clock();
+  zeos_ticks += 1;
 }
 
 void setInterruptHandler(int vector, void (*handler)(), int maxAccessibleFromPL)

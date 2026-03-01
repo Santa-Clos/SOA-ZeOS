@@ -12,12 +12,15 @@
 #include <io.h>
 #include <utils.h>
 #include <zeos_mm.h> /* TO BE DELETED WHEN ADDED THE PROCESS MANAGEMENT CODE TO BECOME MULTIPROCESS */
+#include <stats.h>
 
 
 int (*usr_main)(void) = (void *) (PAG_LOG_INIT_CODE*PAGE_SIZE);
 unsigned int *p_sys_size = (unsigned int *) KERNEL_START;
 unsigned int *p_usr_size = (unsigned int *) KERNEL_START+1;
 unsigned int *p_rdtr = (unsigned int *) KERNEL_START+2;
+unsigned long long zeos_ticks;
+
 
 
 /*
@@ -70,7 +73,8 @@ int __attribute__((__section__(".text.main")))
   /* Move user code/data now (after the page table initialization) */
   copy_data((void *) KERNEL_START + *p_sys_size, (void*)L_USER_START, *p_usr_size);
 
-
+  zeos_ticks = 0;
+  
   printk("Entering user mode...");
 
   enable_int();
