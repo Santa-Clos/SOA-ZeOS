@@ -14,7 +14,7 @@ ENTRY(write)
     movl 16(%ebp), %ebx // size
 
     movl $4, %eax;
-    int $0x80;
+    sysenter;
     cmpl $0, %eax;
     jge ok;
     negl %eax;
