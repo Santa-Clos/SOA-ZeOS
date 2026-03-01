@@ -33,6 +33,7 @@ SYSOBJ = \
 	devices.o \
 	utils.o \
 	list.o \
+	msr.o \
 	hardware.o
 
 LIBZEOS = -L . -l zeos
@@ -41,7 +42,6 @@ LIBZEOS = -L . -l zeos
 USROBJ = \
 	libc.o \
 	wrappers.o \
-	msr.o \
 	# libjp.a \
 
 all:zeos.bin
