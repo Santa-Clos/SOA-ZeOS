@@ -96,7 +96,7 @@ ENTRY(return_gate)
 ENTRY(enable_int)
     pushl %ebp
     movl %esp, %ebp
-    movb $0xfd, %al /* 0xFF = 11111111 -> all bits disabled */
+    movb $0xfc, %al /* 0xFC = 1111 1100 -> all bits disabled except clock and keyboard interruptions */
     outb %al, $0x21
     call delay
     sti

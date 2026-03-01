@@ -24,4 +24,3 @@ ok:
     popl %ebx;
     popl %ebp
     ret
-
