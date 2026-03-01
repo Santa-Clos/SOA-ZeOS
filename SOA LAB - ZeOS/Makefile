@@ -41,6 +41,7 @@ LIBZEOS = -L . -l zeos
 USROBJ = \
 	libc.o \
 	wrappers.o \
+	msr.o \
 	# libjp.a \
 
 all:zeos.bin
@@ -63,6 +64,9 @@ bootsect.s: bootsect.S
 	$(CPP) $(ASMFLAGS) -traditional $< -o $@
 
 entry.s: entry.S $(INCLUDEDIR)/asm.h $(INCLUDEDIR)/segment.h
+	$(CPP) $(ASMFLAGS) -o $@ $<
+
+msr.s: msr.S $(INCLUDEDIR)/asm.h $(INCLUDEDIR)/segment.h
 	$(CPP) $(ASMFLAGS) -o $@ $<
 
 wrappers.s: wrappers.S $(INCLUDEDIR)/asm.h $(INCLUDEDIR)/segment.h
