@@ -15,16 +15,17 @@ ENTRY(write)
     movl 16(%ebp), %ebx // size
     movl $4, %eax;
 
-    push %edx
-	push %ecx
-	push $next_write
-	push %ebp
+    pushl %edx
+	pushl %ecx
+	pushl $next_write
+	pushl %ebp
+
     sysenter;
 next_write:
-    pop %ebp
-	sub $4, %esp
-	pop %ecx
-	pop %edx
+    popl %ebp
+	subl $4, %esp
+	popl %ecx
+	popl %edx
     cmpl $0, %eax;
     jge end_write;
     negl %eax;
@@ -40,12 +41,13 @@ ENTRY(gettime)
     pushl %ebp
     movl %esp, %ebp
 
-    movl $0xa, %eax
+    movl $10, %eax
     // Prólogo sysenter
     pushl %edx
     pushl %ecx
     pushl $next_gettime // Sysenter no guarda la direccion de retorno.
     pushl %ebp
+    movl %esp, %ebp
     sysenter
 next_gettime:
     // Epílogo sysenter

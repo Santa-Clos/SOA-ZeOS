@@ -19,7 +19,7 @@ int (*usr_main)(void) = (void *) (PAG_LOG_INIT_CODE*PAGE_SIZE);
 unsigned int *p_sys_size = (unsigned int *) KERNEL_START;
 unsigned int *p_usr_size = (unsigned int *) KERNEL_START+1;
 unsigned int *p_rdtr = (unsigned int *) KERNEL_START+2;
-unsigned long long zeos_ticks;
+unsigned int zeos_ticks;
 
 
 
