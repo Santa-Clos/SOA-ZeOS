@@ -42,7 +42,7 @@ int __attribute__((__section__(".text.main")))
 
   /*** DO *NOT* ADD ANY CODE IN THIS ROUTINE BEFORE THIS POINT ***/
 
-  printk("Kernel Loaded! Welcome aboard, Sexy Captain!");
+  printk("Kernel Loaded! Welcome aboard, Captains!");
 
 
   /* Initialize hardware data */
@@ -75,7 +75,7 @@ int __attribute__((__section__(".text.main")))
 
   zeos_ticks = 0;
   
-  printk("Entering user mode...");
+  printk("Entering user mode...\n");
 
   enable_int();
   /*

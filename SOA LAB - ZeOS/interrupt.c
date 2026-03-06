@@ -45,8 +45,8 @@ void clock_routine() {
 
 void pagefault_routine(long error, long eip){
   char buff[12];
-  printk ("He llegado al page fault!\n");
-  printk("Proceso genera PAGE FAULT exception en EIP: 0x");
+  printk ("PAGE FAULT exception!\n");
+  printk("Process generates PAGE FAULT exception at EIP: 0x");
   char heip [64]; //on guardem la direccio que dona error
   int num=eip; //num amb l'error per tractarlo
   int i = 0; //it per recorrer heip 
@@ -61,6 +61,7 @@ void pagefault_routine(long error, long eip){
   }
   while(i--) printc(heip[i]);
   printk("\n");
+  printk("Entering in an infinite loop...\n");
   while(1);
 }
 void setInterruptHandler(int vector, void (*handler)(), int maxAccessibleFromPL)
