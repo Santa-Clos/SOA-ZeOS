@@ -62,6 +62,5 @@ int sys_write(int fd, char *buffer, int size) {
 }
 
 int sys_gettime() {
-  if(zeos_ticks < 0) return -EINTR;
   return zeos_ticks;
 }

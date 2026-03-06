@@ -16,6 +16,11 @@ int __attribute__ ((__section__(".text.main")))
   char c[64];
   itoa(time, c);
   write(1, c, 10);
+  
+  write(1, "Test pagefault\n",16);
+  char* p = 0;
+  *p = 'x';
+  write(1, "No hem d'arribar aqui\n", 21);
   while(1) {
     
   }

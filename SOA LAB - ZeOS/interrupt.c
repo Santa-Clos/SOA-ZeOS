@@ -43,6 +43,26 @@ void clock_routine() {
   zeos_ticks += 1;
 }
 
+void pagefault_routine(long error, long eip){
+  char buff[12];
+  printk ("He llegado al page fault!\n");
+  printk("Proceso genera PAGE FAULT exception en EIP: 0x");
+  char heip [64]; //on guardem la direccio que dona error
+  int num=eip; //num amb l'error per tractarlo
+  int i = 0; //it per recorrer heip 
+  	
+  while(num>0){
+    int r = num%16; //per treure el darrer num hexadecimal per imprimirlo
+    if(r >= 10){
+      heip[i++] = 'A' + (r-10); //si es > 10 sera A,B,C,D,E,F
+    } 
+    else heip[i++] = '0' + r; //sino sera un num del 0 al 9
+    num/=16; //seguent num hexa
+  }
+  while(i--) printc(heip[i]);
+  printk("\n");
+  while(1);
+}
 void setInterruptHandler(int vector, void (*handler)(), int maxAccessibleFromPL)
 {
   /***********************************************************************/
@@ -90,6 +110,7 @@ void setTrapHandler(int vector, void (*handler)(), int maxAccessibleFromPL)
 void keyboard_handler();
 void clock_handler();
 void system_call_handler();
+void pagefault_handler();
 
 void setIdt()
 {
@@ -102,9 +123,9 @@ void setIdt()
   /* ADD INITIALIZATION CODE FOR INTERRUPT VECTOR */
   setInterruptHandler(33, keyboard_handler, 0);
   setInterruptHandler(32, clock_handler, 0);
+  setInterruptHandler(14,pagefault_handler,0);
 
   setTrapHandler(0x80, system_call_handler, 3);
 
   set_idt_reg(&idtR);
 }
-

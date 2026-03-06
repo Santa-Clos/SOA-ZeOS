@@ -85,6 +85,9 @@ ENTRY(clock_handler)
       RESTORE_ALL
       iret
 
+ENTRY(pagefault_handler)
+	CALL pagefault_routine
+	iret
 
 // AQUI VAN LAS ENTRADAS A INT 0x80 o SYSENTER (MAS ABAJO)
 
