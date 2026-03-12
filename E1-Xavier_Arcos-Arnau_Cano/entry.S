@@ -70,10 +70,11 @@
       outb %al, $0x20;
 
 
+
 ENTRY(keyboard_handler)
       SAVE_ALL
-      call keyboard_routine
       EOI
+      call keyboard_routine
       RESTORE_ALL
       iret
 
@@ -85,7 +86,8 @@ ENTRY(clock_handler)
       iret
 
 ENTRY(pagefault_handler)
-	CALL pagefault_routine // juraría que los dos útlimos parámetros són error y eip.
+	CALL pagefault_routine
+	iret
 
 // AQUI VAN LAS ENTRADAS A INT 0x80 o SYSENTER (MAS ABAJO)
 
